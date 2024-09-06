@@ -1,0 +1,17 @@
+-- Crear la base de datos dbIJGZ20240906
+CREATE DATABASE dbIJGZ20240906;
+GO
+
+-- Utilizar la base de datos dbIJGZ20240906
+USE dbIJGZ20240906;
+GO
+
+-- Crear la tabla ProductsIJGZ
+CREATE TABLE ProductsIJGZ
+(
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    NombreIJGZ VARCHAR(50) NOT NULL,
+    DescripcionIJGZ VARCHAR(100) NULL,
+    PrecioIJGZ DECIMAL(10,2) NOT NULL
+);
+GO
