@@ -13,8 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Endpoints\" />
-    <Folder Include="Models\DAL\" />
-    <Folder Include="Models\EN\" />
   </ItemGroup>
 
 </Project>
