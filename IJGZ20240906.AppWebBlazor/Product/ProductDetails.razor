@@ -1,0 +1,59 @@
+﻿@page "/product-details/{Id:int}"
+
+@using IJGZ20240906.DTOs.ProductIJGZDTOs;
+@using Microsoft.AspNetCore.Components.Forms;
+@using IJGZ20240906.AppWebBlazor.Data;
+
+<h3>Ver Producto</h3>
+<div class="row">
+    <div class="col-4">
+        <div class="form-group">
+            <label for="Name">Nombre del Producto:</label>
+            <input type="text" class="form-control" disabled @bind="product.NombreIJGZ" />
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="Price">Precio:</label>
+            <input type="text" class="form-control" disabled @bind="product.PrecioIJGZ" />
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="form-group">
+            <label for="Description">Descripción:</label>
+            <textarea disabled class="form-control" @bind="product.DescripcionIJGZ"></textarea>
+        </div>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-12">
+        <NavLink href="/product-list" class="btn btn-primary">Ir a buscar productos</NavLink>
+    </div>
+</div>
+
+@code {
+    // Parámetro para recibir el ID del producto desde la llamada al componente
+    [Parameter]
+    public int Id { get; set; }
+
+    // Inyección de dependencia de ProductService para acceder a sus métodos
+    [Inject]
+    ProductIJGZService productService { get; set; }
+
+    // Creación de una instancia de GetIdResultProductDTO para almacenar los datos del producto
+    GetIdResultProductIJGZDTO product = new GetIdResultProductIJGZDTO();
+
+    /*
+     *  Se utiliza para realizar inicializaciones o tareas
+     *  cuando se carga una página o componente de Blazor.
+     */
+    protected override async Task OnInitializedAsync()
+    {
+        // En el momento de inicialización del componente, llama al método GetById de
+        //  ProductService para obtener los datos del producto con el ID proporcionado
+        product = await productService.GetById(Id);
+    }
+}
