@@ -1,0 +1,105 @@
+﻿@page "/edit-product/{Id:int}"
+
+@using IJGZ20240906.DTOs.ProductIJGZDTOs;
+@using Microsoft.AspNetCore.Components.Forms;
+@using System.ComponentModel.DataAnnotations;
+@using IJGZ20240906.AppWebBlazor.Data;
+
+@if (isSuccess == false && isError == false)
+{
+    <h3>Modificar Producto</h3>
+
+    <EditForm Model="product" OnValidSubmit="Edit">
+        <DataAnnotationsValidator />
+        <div class="row">
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="NombreIJGZ">Nombre del Producto:</label>
+                    <InputText class="form-control" @bind-Value="product.NombreIJGZ" />
+                    <ValidationMessage For="() => product.NombreIJGZ" />
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="form-group">
+                    <label for="Price">Precio:</label>
+                    <InputTextArea class="form-control" @bind-Value="product.DescripcionIJGZ" />
+                    <ValidationMessage For="() => product.DescripcionIJGZ" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label for="Description">Descripción:</label>
+                    <InputNumber class="form-control" @bind-Value="product.PrecioIJGZ" />
+                    <ValidationMessage For="() => product.PrecioIJGZ" />
+                </div>
+            </div>
+        </div>
+        
+        <br>
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Modificar</button>
+                <NavLink href="/product-list" class="btn btn-secondary">Cancelar</NavLink>
+            </div>
+        </div>
+    </EditForm>
+}
+else if (isSuccess)
+{
+    product = new EditProductIJGZDTO();
+    isError = false;
+    <p class="alert alert-success">Producto se modificó con éxito.</p>
+    <NavLink href="/product-list" class="btn btn-primary">Aceptar</NavLink>
+}
+else if (isError)
+{
+    <p class="alert alert-danger">Sucedió un error al intentar modificar o no ha realizado ninguna modificación al registro actual.</p>
+    <NavLink href="/product-list" class="btn btn-primary">Aceptar</NavLink>
+}
+
+@code {
+    // Declaración de un parámetro llamado "Id" que puede ser pasado al componente
+    [Parameter]
+    public int Id { get; set; }
+
+    // Inyección de dependencia de ProductService para
+    // acceder a los servicios relacionados con los productos
+    [Inject]
+    ProductIJGZService productService { get; set; }
+
+    // Declaración e inicialización de un objeto "product"
+    // para almacenar los detalles del producto
+    EditProductIJGZDTO product = new EditProductIJGZDTO();
+
+    // Declaración de variables booleanas para manejar el estado de éxito y error
+    bool isSuccess = false;
+    bool isError = false;
+
+    // Método que se llama cuando se inicializa el componente
+    protected override async Task OnInitializedAsync()
+    {
+        // Realiza una llamada asincrónica para obtener los
+        // detalles del producto por su Id
+        var productDetail = await productService.GetById(Id);
+
+        // Inicializa el objeto "product" con los detalles del producto obtenidos
+        product = new EditProductIJGZDTO(productDetail);
+    }
+
+    // Método para editar el producto
+    private async Task Edit()
+    {
+        // Realiza una llamada asincrónica para editar la información del producto
+        int result = await productService.Edit(product);
+
+        // Verifica si el resultado de la edición es diferente
+        // de cero (éxito) o igual a cero (error)
+        if (result != 0)
+            isSuccess = true;
+        else
+            isError = true;
+    }
+
+}

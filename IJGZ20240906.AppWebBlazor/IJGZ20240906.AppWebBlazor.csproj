@@ -7,10 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\IJGZ20240906.DTOs\IJGZ20240906.DTOs.csproj" />
   </ItemGroup>
 
