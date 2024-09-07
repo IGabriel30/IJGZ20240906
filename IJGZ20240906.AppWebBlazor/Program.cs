@@ -7,7 +7,16 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
+
+// Registra CustomerService como un servicio Singleton (una instancia única para toda la aplicación)
+builder.Services.AddSingleton<ProductIJGZService>();
+
+// Configura y agrega un cliente HTTP con nombre "CRMAPI"
+builder.Services.AddHttpClient("IJGZAPI", c =>
+{ 
+    c.BaseAddress = new Uri(builder.Configuration["UrlsAPI:IJGZ"]);
+   
+});
 
 var app = builder.Build();
 
