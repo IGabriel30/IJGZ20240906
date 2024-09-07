@@ -1,8 +1,8 @@
-﻿@model SearchResultProductIJGZDTO
+﻿@model IJGZ20240906.DTOs.ProductIJGZDTOs.SearchResultProductIJGZDTO
 
 @{
     ViewData["Title"] = "Index";
-    var modelSearchQuery = ViewBag.SearchQuery as SearchResultProductIJGZDTO;
+    var modelSearchQuery = ViewBag.SearchQuery as SearchQueryProductIJGZDTO;
 }
 <partial name="SearchQuery" model="modelSearchQuery" />
 <partial name="SearchResult" model="Model.Data" />
