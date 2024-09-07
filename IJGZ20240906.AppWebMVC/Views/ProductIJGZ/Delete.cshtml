@@ -1,0 +1,45 @@
+﻿@model GetIdResultProductIJGZDTO
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Eliminar</h1>
+
+<h3>¿Estás seguro de que deseas eliminar el producto?</h3>
+<div>
+    <h4>Producto</h4>
+    <hr />
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="NombreIJGZ" class="control-label"></label>
+                <input asp-for="NombreIJGZ" disabled class="form-control" />
+                <span asp-validation-for="NombreIJGZ" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="PrecioIJGZ" class="control-label"></label>
+                <input asp-for="PrecioIJGZ" disabled class="form-control" />
+                <span asp-validation-for="PrecioIJGZ" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-7">
+            <div class="form-group">
+                <label asp-for="DescripcionIJGZ" class="control-label"></label>
+                <textarea asp-for="DescripcionIJGZ" disabled class="form-control"></textarea>
+                <span asp-validation-for="DescripcionIJGZ" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <br />
+    <form asp-action="Delete">
+        <div class="row-cols-6">
+            <input type="submit" value="Eliminar" class="btn btn-danger" />
+            <a asp-action="Index">Cancelar</a>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,52 @@
+﻿@model GetIdResultProductIJGZDTO
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Detalles</h1>
+
+<h4>Producto</h4>
+<hr />
+<form asp-action="Details">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input asp-for="Id" type="hidden" />
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="NombreIJGZ" class="control-label"></label>
+                <input asp-for="NombreIJGZ" disabled class="form-control" />
+                <span asp-validation-for="NombreIJGZ" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="DescripcionIJGZ" class="control-label"></label>
+                <textarea asp-for="DescripcionIJGZ" disabled class="form-control"></textarea>
+                <span asp-validation-for="DescripcionIJGZ" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label asp-for="PrecioIJGZ" class="control-label"></label>
+                <input asp-for="PrecioIJGZ" disabled class="form-control" />
+                <span asp-validation-for="PrecioIJGZ" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row-cols-6">
+        <div class="form-group">
+            <a asp-action="Index" class="btn btn-secondary">Ver productos</a>
+        </div>
+    </div>
+</form>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
