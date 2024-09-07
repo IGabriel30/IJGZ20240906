@@ -7,7 +7,7 @@ namespace IJGZ20240906.Endpoints
     public static class ProductIJGZEndpoint
     {
         // Método para configurar los endpoints relacionados con los productos
-        public static void AddCustomerEndpoints(this WebApplication app)
+        public static void AddProductEndpoints(this WebApplication app)
         {
             // Configurar un endpoint de tipo POST para buscar productos
             app.MapPost("/product/search", async (SearchQueryProductIJGZDTO productIJGZDTO, ProductIJGZDAL productIJGZDAL) =>
@@ -104,7 +104,7 @@ namespace IJGZ20240906.Endpoints
             // Configurar un endpoint de tipo PUT para editar un cliente existente
             app.MapPut("/product", async (EditProductIJGZDTO productIJGZDTO, ProductIJGZDAL productIJGZDAL) =>
             {
-                // Crear un objeto 'Customer' a partir de los datos proporcionados
+               
                 var product = new ProductIJGZ
                 {
                     Id = productIJGZDTO.Id,

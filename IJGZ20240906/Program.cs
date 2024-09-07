@@ -23,7 +23,7 @@ builder.Services.AddScoped<ProductIJGZDAL>();
 var app = builder.Build();
 
 // Agrega los puntos finales relacionados con los products a la aplicación.
-app.AddCustomerEndpoints();
+app.AddProductEndpoints();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
